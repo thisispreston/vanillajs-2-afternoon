@@ -134,6 +134,7 @@
             <polygon points="680,10 710,10 710,100 680,100 680,10" class="black pianoKey" data-key="56" />
             <polygon points="725,10 755,10 755,100 725,100 725,10" class="black pianoKey" data-key="57" />
             <polygon points="770,10 800,10 800,100 770,100 770,10" class="black pianoKey" data-key="48" />
+
         </svg>
 
         <audio data-key="97" src="./pianoSounds/middle_c.mp3"></audio>
@@ -165,6 +166,15 @@
 </body>
 
 <script>
+    window.addEventListener('keypress', function(keyPressEvent) {
+        const tone = document.querySelector(`audio[data-key="${keyPressEvent.keyCode}"]`)
+        const pianoKey = document.querySelector(`.pianoKey[data-key="${keyPressEvent.keyCode}"]`)
+        if(tone === 'falsy') {
+            return
+        }
+        tone.currentTime = 0
+        tone.play()
+    })
 </script>
 
 </html>
